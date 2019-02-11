@@ -15,6 +15,8 @@ const white = "white";
 const rows = 6;
 const columns = 7;
 
+const setNum = 4;
+
 // Function which returns a boolean if all values in array are equal
 const allEqual = arr => arr.every(v => v === arr[0]);
 
@@ -128,7 +130,6 @@ function playerTurn(dropCircle){
             text_span.innerHTML = "Blue's Move!";
             text_span.style.color = blue;
             currentPlayer = 2;
-            turn++;
         }else{
             circle[newI][j].color = blue;
             circle[newI][j].state = true;
@@ -155,8 +156,9 @@ function playerTurn(dropCircle){
                 i--; 
             }, 60);
         }
+        turn++;
     }
-    if(turn >= 4){
+    if(turn >= 2*setNum - 1){
         if(checkForWin()){
             gameFinished = true;
             if(winner === red){
@@ -168,6 +170,9 @@ function playerTurn(dropCircle){
             }
             restartText_span. style.visibility = "visible";
         }
+    }
+    if(turn == (rows*columns)){
+        restartText_span. style.visibility = "visible";
     }
 }
 function cacheColors(){
@@ -183,7 +188,7 @@ function checkForWin(){
     // Check for vertical alignment
     for(let i = 0; i < rows-3; i++){
         for(let j = 0; j < columns; j++){
-            for(let x = 0; x < 4; x++){
+            for(let x = 0; x < setNum; x++){
                 set[x] = colorCache[columns*i + j + columns*x];
             }
             if(set[0] != white && set[0] != background){
@@ -195,7 +200,7 @@ function checkForWin(){
         }
         // Check for positive diagonal alignment
         for(let j = 0; j < columns-3; j++){
-            for(let x = 0; x < 4; x++){
+            for(let x = 0; x < setNum; x++){
                 set[x] = colorCache[columns*i + j + (columns + 1)*x];
             }
             if(set[0] != white && set[0] != background){
@@ -205,7 +210,7 @@ function checkForWin(){
                 }
             }
             // Check for negative diagonal alignment
-            for(let x = 0; x < 4; x++){
+            for(let x = 0; x < setNum; x++){
                 set[x] = colorCache[columns*i + j + (columns - 1)*x + 3];
             }
             if(set[0] != white && set[0] != background){
@@ -219,7 +224,7 @@ function checkForWin(){
     // Check for horizontal alignment
     for(let i = 0; i < rows; i++){
         for(let j = 0; j < columns-3; j++){
-            for(let x = 0; x < 4; x++){
+            for(let x = 0; x < setNum; x++){
                 set[x] = colorCache[i + columns*j + x];
             }
             if(set[0] != white && set[0] != background){
@@ -237,7 +242,6 @@ function restart(){
     restartText_span.style.visibility = "hidden";
     text_span.innerHTML = "Red's Move!";
     text_span.style.color = red;
-    let dick = 0;
     for(let i = 0; i < rows; i++){
         for(let j = 0; j < columns; j++){
             circle[i][j].elem.style.backgroundColor = white;
