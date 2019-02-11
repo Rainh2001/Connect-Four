@@ -136,21 +136,25 @@ function playerTurn(dropCircle){
             text_span.style.color = red;
             currentPlayer = 1;
         }
-        let i = rows-1;
-        let start = true;
-        let circleFall = setInterval(function(){    
-            if(start){
-                circle[i][j].elem.style.backgroundColor = circle[newI][j].color;
-                start = false;
-            }else{
-                circle[i+1][j].elem.style.backgroundColor = white;
-                circle[i][j].elem.style.backgroundColor = circle[newI][j].color;
-                if(i == newI){
-                    clearInterval(circleFall);
+        if(newI == rows-1){
+            circle[newI][j].elem.style.backgroundColor = circle[newI][j].color;
+        }else{
+            let i = rows-1;
+            let start = true;
+            let circleFall = setInterval(function(){    
+                if(start){
+                    circle[i][j].elem.style.backgroundColor = circle[newI][j].color;
+                    start = false;
+                }else{
+                    circle[i+1][j].elem.style.backgroundColor = white;
+                    circle[i][j].elem.style.backgroundColor = circle[newI][j].color;
+                    if(i == newI){
+                        clearInterval(circleFall);
+                    }
                 }
-            }
-            i--; 
-        }, 60);
+                i--; 
+            }, 60);
+        }
     }
     if(turn >= 4){
         if(checkForWin()){
