@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,500,600,700');
+* {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: Asap;
+}
+body {
+    background-color: #3e4e6d;
+}
+header {
+    background-color: white;
+    text-align: center;
+    height: 100px;    
+    position: relative;
+}
+header h1 {
+    position: relative;
+    top: 25%;
+}
+.circle{
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 2px;
+}
+#drop-area {
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#board {
+    background-color: #dbd806;
+    width: 250px;
+    text-align: center;
+    border: 3px solid white;
+    margin: auto;
+}
+.row {
+    width: 250px;
+    text-align: center;
+    margin: auto;
+}
+#text-box {
+    text-align: center;
+    margin-top: 40px;
+}
+#text {
+    font-size: 30px;
+    color: #e23d34;
+}
+#restart-div {
+    margin-top: 50px;
+    text-align: center;
+}
+#restart-text {
+    background-color: white;
+    padding: 25px 50px;
+    font-weight: 700;
+    border-radius: 5%;
+    visibility: hidden;
+    cursor: pointer;
+    text-transform: uppercase;
+}
